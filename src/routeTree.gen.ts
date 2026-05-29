@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as _rootSpaRouteImport } from './routes/__root.spa'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as SignupRouteImport } from './routes/signup'
 import { Route as SettingsRouteImport } from './routes/settings'
@@ -23,6 +24,11 @@ import { Route as DashboardManageRouteImport } from './routes/dashboard.manage'
 import { Route as DashboardBlacklistRouteImport } from './routes/dashboard.blacklist'
 import { Route as ApiPublicWebhookOrdersRouteImport } from './routes/api/public/webhook.orders'
 
+const _rootSpaRoute = _rootSpaRouteImport.update({
+  id: '/__root/spa',
+  path: '/spa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -98,6 +104,7 @@ export interface FileRoutesByFullPath {
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/support': typeof SupportRoute
+  '/spa': typeof _rootSpaRoute
   '/dashboard/blacklist': typeof DashboardBlacklistRoute
   '/dashboard/manage': typeof DashboardManageRoute
   '/dashboard/reports': typeof DashboardReportsRoute
@@ -112,6 +119,7 @@ export interface FileRoutesByTo {
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/support': typeof SupportRoute
+  '/spa': typeof _rootSpaRoute
   '/dashboard/blacklist': typeof DashboardBlacklistRoute
   '/dashboard/manage': typeof DashboardManageRoute
   '/dashboard/reports': typeof DashboardReportsRoute
@@ -128,6 +136,7 @@ export interface FileRoutesById {
   '/settings': typeof SettingsRoute
   '/signup': typeof SignupRoute
   '/support': typeof SupportRoute
+  '/__root/spa': typeof _rootSpaRoute
   '/dashboard/blacklist': typeof DashboardBlacklistRoute
   '/dashboard/manage': typeof DashboardManageRoute
   '/dashboard/reports': typeof DashboardReportsRoute
@@ -145,6 +154,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signup'
     | '/support'
+    | '/spa'
     | '/dashboard/blacklist'
     | '/dashboard/manage'
     | '/dashboard/reports'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signup'
     | '/support'
+    | '/spa'
     | '/dashboard/blacklist'
     | '/dashboard/manage'
     | '/dashboard/reports'
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/settings'
     | '/signup'
     | '/support'
+    | '/__root/spa'
     | '/dashboard/blacklist'
     | '/dashboard/manage'
     | '/dashboard/reports'
@@ -190,11 +202,19 @@ export interface RootRouteChildren {
   SettingsRoute: typeof SettingsRoute
   SignupRoute: typeof SignupRoute
   SupportRoute: typeof SupportRoute
+  _rootSpaRoute: typeof _rootSpaRoute
   ApiPublicWebhookOrdersRoute: typeof ApiPublicWebhookOrdersRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/__root/spa': {
+      id: '/__root/spa'
+      path: '/spa'
+      fullPath: '/spa'
+      preLoaderRoute: typeof _rootSpaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -316,6 +336,7 @@ const rootRouteChildren: RootRouteChildren = {
   SettingsRoute: SettingsRoute,
   SignupRoute: SignupRoute,
   SupportRoute: SupportRoute,
+  _rootSpaRoute: _rootSpaRoute,
   ApiPublicWebhookOrdersRoute: ApiPublicWebhookOrdersRoute,
 }
 export const routeTree = rootRouteImport

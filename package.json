@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "vite dev",
     "build": "vite build",
+    "build:spa": "vite build --config vite.config.spa.ts && mv dist-spa/index.spa.html dist-spa/index.html && cp public-spa/.htaccess dist-spa/ && cp public/llms.txt public/robots.txt public/sitemap.xml dist-spa/",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",

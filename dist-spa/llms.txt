@@ -1,0 +1,9 @@
+# OrderProfit
+
+> OrderProfit connects WordPress WooCommerce stores and calculates real monthly profit after delivery, packaging, marketing, and return costs.
+
+## Pages
+
+- [Home](/): Product overview, features, and how OrderProfit works for WooCommerce stores.
+- [Sign up](/signup): Create a free OrderProfit account.
+- [Login](/login): Sign in to an existing OrderProfit account.
