@@ -1,0 +1,1 @@
+ALTER TABLE public.orders ADD CONSTRAINT orders_user_order_unique UNIQUE (user_id, order_id);

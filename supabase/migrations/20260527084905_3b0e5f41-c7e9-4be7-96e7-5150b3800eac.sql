@@ -1,0 +1,2 @@
+ALTER TABLE public.profiles ADD COLUMN IF NOT EXISTS email_reports text NOT NULL DEFAULT 'off';
+ALTER TABLE public.profiles ADD CONSTRAINT profiles_email_reports_check CHECK (email_reports IN ('off','weekly','monthly'));

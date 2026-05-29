@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://revenue-wise-mate.lovable.app/sitemap.xml
